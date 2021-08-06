@@ -19,6 +19,20 @@ How to do generate protoc
 ```bash
 protoc --proto_path=./grpc --go_out=./grpc --plugin=protoc-gen-go=../bin/protoc-gen-go myGrpc.proto
 protoc --proto_path=./grpc --go-grpc_out=./grpc --plugin=protoc-gen-go-grpc=../bin/protoc-gen-go-grpc myGrpc.proto
+protoc ./grpc --grpc-gateway_out=./grpc --plugin=protoc-gen-grpc-gateway=../bin/protoc-gen-grpc-gateway myGrpc.proto
+```
+
+How to do run
+
+```bash
+go run server.go
+go run client.go
+```
+
+How use make file
+
+```bash
+make all
 ```
 
 How to do HTTP CALL
