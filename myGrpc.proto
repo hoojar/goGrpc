@@ -1,0 +1,42 @@
+syntax = "proto3";
+package myGrpc;//定义包名
+option go_package = "./myGrpc;myGrpc";
+import "google/api/annotations.proto";
+
+//可以定义多个服务，每个服务内可以定义多个接口
+//方法(请求消息结构体) returns (返回消息结构体) {}
+service ProdService {
+	rpc Md5 (Req) returns (Res) {
+		option (google.api.http) = {
+			get: "/v1/md5"
+		};
+	};
+
+	rpc MathSum(NumRequest) returns(NumResponse) {
+		option (google.api.http) = {
+			post: "/v1/mathSum"
+			body: "*"
+		};
+	};
+}
+
+//定义 Request 消息结构
+message Req {
+	string inString = 1;//类型 字段 = 标识号
+}
+
+//定义 Response 消息结构
+message Res {
+	string retString = 1;//类型 字段 = 标识号
+}
+
+// 定义request model
+message NumRequest {
+	int32 min = 1; //1代表顺序
+	int32 max = 2; //2代表顺序
+}
+
+// 定义response model
+message NumResponse {
+	int32 amount = 1; //1代表顺序
+}
